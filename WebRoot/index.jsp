@@ -21,8 +21,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
 		<form action="LoginAction" method="post">
-
-			<form>
 				<div class="form-group">
 					<label>
 						用户名：
@@ -65,7 +63,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<button type="submit" class="btn btn-default">
 					Submit
 				</button>
-			</form>
 		</form>
 	</body>
 </html>
