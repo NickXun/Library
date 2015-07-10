@@ -2,8 +2,12 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<package name="va" extends="struts-default">
-		<action name="LoginAction" class="com.nku403.action.UserAction" method="login">
+		<action name="RegisterAction" class="com.nku403.action.RegisterAction" >
 			<result name="success">/context/success.html</result>
+			<result name="input">/index.jsp</result>
+		</action>
+		<action name="LoginAction" class="com.nku403.action.LoginAction" >
+			<result name="login">/context/welcome.jsp</result>
 			<result name="input">/index.jsp</result>
 		</action>
 	</package>
