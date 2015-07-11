@@ -28,17 +28,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 @import
 	url("//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css")
 	;
-
+header{
+	margin-bottom:100px;
+}
 
 </style>
 	</head>
 
 	<body>
-
+	<header>
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="${pageContext.request.contextPath}">NKU 403</a>
+					<a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp"><span class="glyphicon glyphicon-home"></span>&nbsp;NKU 403</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<s:if test="%{#session.user == null}">
@@ -90,8 +92,64 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<!--/.navbar-collapse -->
 			</div>
 		</nav>
-
-
+	</header>
+		<div class="container">
+			<div class="row">
+			<div class="col-lg-12">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="重新查找">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button">
+							<span class="glyphicon glyphicon-search"></span>
+						</button> </span>
+				</div>
+				<!-- /input-group -->
+			</div>
+			</div>
+			<br>
+			<br>
+			<div class="row">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						共检索到图书100本
+					</h3>
+				</div>
+				<div class="panel-body">
+				<div class="row">
+					<div class="col-lg-10">				
+						<p>1.java教程  索书号</p>
+						<p>作者</p>
+						<p>出版社</p>
+						<P>ISBN</P>	
+					</div>
+					
+					<div class="col-lg-2">
+						<p>馆藏复本:2</p>
+						<p>当前可借:2</p>
+					</div>
+				</div>
+				<hr>
+				<div class="row">
+					<div class="col-lg-10">				
+						<p>1.java教程  索书号</p>
+						<p>作者</p>
+						<p>出版社</p>
+						<P>ISBN</P>	
+					</div>
+					
+					<div class="col-lg-2">
+						<br>
+						<br>
+						<p>馆藏复本:2</p>
+						<p>当前可借:2</p>
+					</div>
+				</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		
 		<footer>
 			<p align="center">
 				© copyright NKU403 2015

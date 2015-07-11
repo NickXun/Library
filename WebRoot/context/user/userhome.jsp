@@ -103,7 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<a href="#" class="list-group-item"> <span class="glyphicon glyphicon-paperclip"></span> &nbsp;当前借阅 </a>
 						<a href="#" class="list-group-item"> <span class="glyphicon glyphicon-cloud"></span> &nbsp;历史借阅 </a>
 						<a href="#" class="list-group-item"> 账目清单 </a>
-						<a href="#" class="list-group-item"> <span class="glyphicon glyphicon-blackboard"></span> &nbsp;书架 </a>
+						<a href="#" class="list-group-item"> <span class="glyphicon glyphicon-book"></span> &nbsp;书架 </a>
 					</div>
 				</div>
 				

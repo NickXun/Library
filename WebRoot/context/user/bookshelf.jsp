@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp"><span class="glyphicon glyphicon-home"></span>NKU 403</a>
+					<a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp"><span class="glyphicon glyphicon-home"></span>&nbsp;NKU 403</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<s:if test="%{#session.user == null}">
@@ -100,11 +100,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<!-- 左侧导航栏 -->
 				<div class="col-sm-2">
 					<div class="list-group">
-						<a href="#" class="list-group-item"> <span class="glyphicon glyphicon-home"></span>个人信息 </a>
-						<a href="#" class="list-group-item"> <span class="glyphicon glyphicon-paperclip"></span>当前借阅 </a>
-						<a href="#" class="list-group-item"> <span class="glyphicon glyphicon-cloud"></span>历史借阅 </a>
-						<a href="#" class="list-group-item"> 账目清单 </a>
-						<a href="#" class="list-group-item active"> <span class="glyphicon glyphicon-blackboard"></span> &nbsp;书架 </a>
+						<a href="#" class="list-group-item"> <span class="glyphicon glyphicon-home"></span>&nbsp;个人信息 </a>
+						<a href="#" class="list-group-item"> <span class="glyphicon glyphicon-paperclip"></span>&nbsp;当前借阅 </a>
+						<a href="#" class="list-group-item"> <span class="glyphicon glyphicon-cloud"></span>&nbsp;历史借阅 </a>
+						<a href="#" class="list-group-item"> &nbsp;账目清单 </a>
+						<a href="#" class="list-group-item active"> <span class="glyphicon glyphicon-book"></span> &nbsp;书架 </a>
 					</div>
 				</div>
 				
@@ -112,7 +112,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h3 class="panel-title">
-								<span class="glyphicon glyphicon-cloud"></span> 历史借阅
+								<span class="glyphicon glyphicon-book"></span> 书架
 							</h3>
 						</div>
 						<div class="panel-body">
