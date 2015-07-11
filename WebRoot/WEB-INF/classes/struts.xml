@@ -7,8 +7,11 @@
 			<result name="input">/index.jsp</result>
 		</action>
 		<action name="LoginAction" class="com.nku403.action.LoginAction" >
-			<result name="login">/context/welcome.jsp</result>
+			<result name="login">/index.jsp</result>
 			<result name="input">/index.jsp</result>
+		</action>
+		<action name="UserAction" class="com.nku403.action.UserAction">
+			<result name="success">/index.jsp</result>
 		</action>
 	</package>
 </struts>    

@@ -14,7 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 		<meta name="description" content="NKU403">
-		<meta name="author" content="NKU406">
+		<meta name="author" content="NKU403">
 
 		<title>NKU library</title>
 
@@ -25,9 +25,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 		<style>
-		
-		@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css");
-		
+@import
+	url("//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css")
+	;
+
 .libraryimg {
 	margin: 0 auto;
 	width: 100%;
@@ -40,22 +41,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	max-height: 500px;
 }
 
-.bottom-bar{
+.bottom-bar {
 	weight: 100%;
-	padding-top:10px;
+	padding-top: 10px;
 }
 
-img{
-	display:block;
-	margin:0 auto;
+img {
+	display: block;
+	margin: 0 auto;
 }
 
-p{
-	text-align:center;
-	padding-top:10px;
+p {
+	text-align: center;
+	padding-top: 10px;
 }
-#sa{
- 	margin-top:10px;
+
+#sa {
+	margin-top: 10px;
 }
 
 </style>
@@ -66,26 +68,54 @@ p{
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container">
 				<div class="navbar-header">
-					<a class="navbar-brand">NKU 403</a>
+					<a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp"><span class="glyphicon glyphicon-home"></span> NKU 403</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
-					<form class="navbar-form navbar-right" action="LoginAction"
-						method="post">
-						<div class="form-group">
-							<input type="text" placeholder="username" class="form-control"
-								name="user.userName">
-						</div>
-						<div class="form-group">
-							<input type="password" placeholder="Password"
-								class="form-control" name="user.userPassword">
-						</div>
-						<button type="submit" class="btn btn-success">
-							Sign in
-						</button>
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myRegister">
-							Register
-						</button>
-					</form>
+					<s:if test="%{#session.user == null}">
+						<form class="navbar-form navbar-right" action="LoginAction"
+							method="post">
+							<div class="form-group">
+								<input type="text" placeholder="username" class="form-control"
+									name="user.userName">
+							</div>
+							<div class="form-group">
+								<input type="password" placeholder="Password"
+									class="form-control" name="user.userPassword">
+							</div>
+							<button type="submit" class="btn btn-success">
+								Sign in
+							</button>
+							<button type="button" class="btn btn-primary" data-toggle="modal"
+								data-target="#myRegister">
+								Register
+							</button>
+						</form>
+					</s:if>
+					<s:else>
+						
+						<ul class="nav navbar-nav navbar-right">
+							
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"
+									role="button" aria-haspopup="true" aria-expanded="false"><s:property value="#session.user.userName" />
+									<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="${pageContext.request.contextPath}/context/user/userhome.jsp">用户中心</a>
+									</li>
+									<li>
+										<a href="#">书架</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<s:url action="UserAction" method="logout" id="lout"></s:url>
+								<!--<s:a href="%{#lout}">注销</s:a>-->
+								<a href="UserAction!logout">注销</a>
+							</li>
+						</ul>
+					</s:else>
 				</div>
 				<!--/.navbar-collapse -->
 			</div>
@@ -246,12 +276,10 @@ p{
 
 		<footer>
 			<p align="center">
-				© Company 2014
+				© copyright NKU403 2015
 			</p>
 		</footer>
-		</div>
 		<!-- /container -->
-
 
 		<!-- Bootstrap core JavaScript
     ================================================== -->
@@ -293,4 +321,3 @@ p{
 
 	</body>
 </html>
-

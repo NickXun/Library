@@ -39,7 +39,7 @@ public class LoginAction extends ActionSupport {
 		user.setUserPassword(encryption(user.getUserPassword()));
 		List temp = service.findUser(user);
 		if (temp.size() > 0) {
-			ActionContext.getContext().getSession().put("user", user);
+			ActionContext.getContext().getSession().put("user", temp.get(0));
 			return "login";
 		}
 		return "input";
