@@ -12,7 +12,11 @@
 			value="com.mysql.jdbc.Driver">
 		</property>
 		<property name="url"
+<<<<<<< HEAD
 			value="jdbc:mysql://127.0.0.1:3309/library">
+=======
+			value="jdbc:mysql://127.0.0.1:3306/library?characterEncoding=UTF-8">
+>>>>>>> origin/master
 		</property>
 		<property name="username" value="root"></property>
 		<property name="password" value=""></property>
@@ -31,7 +35,13 @@
 		</property>
 		<property name="mappingResources">
 			<list>
-				<value>com/nku403/entity/User.hbm.xml</value></list>
+				<value>com/nku403/entity/User.hbm.xml</value>
+				<value>com/nku403/entity/Book.hbm.xml</value>
+				<value>com/nku403/entity/Bookstore.hbm.xml</value>
+				<value>com/nku403/entity/Borrow.hbm.xml</value>
+				<value>com/nku403/entity/Returning.hbm.xml</value>
+				<value>com/nku403/entity/Subscribe.hbm.xml</value>
+				<value>com/nku403/entity/Type.hbm.xml</value></list>
 		</property></bean>
 	<bean id="UserDAO" class="com.nku403.daoimpl.UserDAO">
 		<property name="sessionFactory">
@@ -41,6 +51,47 @@
 	<bean id="UserService" class="com.nku403.serviceimpl.UserServiceImpl">
 		<property name="userDAO">
 			<ref bean="UserDAO" />
+		</property>
+	</bean>
+	<bean id="BookDAO" class="com.nku403.daoimpl.BookDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"></ref>
+		</property>
+	</bean>
+	<bean id="BookstoreDAO" class="com.nku403.daoimpl.BookstoreDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="BorrowDAO" class="com.nku403.daoimpl.BorrowDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ReturningDAO" class="com.nku403.daoimpl.ReturningDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="SubscribeDAO" class="com.nku403.daoimpl.SubscribeDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="TypeDAO" class="com.nku403.daoimpl.TypeDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="TypeService" class="com.nku403.serviceimpl.TypeServiceImpl">
+		<property name="typeDAO">
+			<ref bean="TypeDAO" />
+		</property>
+	</bean>
+	
+	<bean id="BookService" class="com.nku403.serviceimpl.BookServiceImpl">
+		<property name="bookDAO">
+			<ref bean="BookDAO" />
 		</property>
 	</bean>
 	</beans>

@@ -3,20 +3,14 @@
 	"-//OpenSymphony Group//XWork Validator 1.0.3//EN"
 	"http://www.opensymphony.com/xwork/xwork-validator-1.0.3.dtd">
 	<validators>
-		<field name="userName">
+		<field name="user.userName">
 			<field-validator type="requiredstring">
 				<message>姓名不能为空</message>
 			</field-validator>
 		</field>
-		<field name="userPassword">
+		<field name="user.userPassword">
 			<field-validator type="requiredstring">
 				<message>密码不能为空</message>
 			</field-validator>
 		</field>
-		<field name="userPhone">
-			<field-validator type="requiredstring">
-				<message>手机不能为空</message>
-			</field-validator>
-		</field>
 	</validators>
-

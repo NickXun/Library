@@ -23,11 +23,11 @@
             <column name="userNickname" length="20" />
         </property>
         <property name="userEmail" type="java.lang.String">
-            <column name="userEmail" length="50" not-null="true" />
+            <column name="userEmail" length="50" />
         </property>
         <property name="userPhone" type="java.lang.String">
-            <column name="userPhone" length="11" not-null="true" />
-        </property><!--
+            <column name="userPhone" length="11" />
+        </property>
         <set name="returnings" inverse="true">
             <key>
                 <column name="userId" not-null="true" />
@@ -46,5 +46,5 @@
             </key>
             <one-to-many class="com.nku403.entity.Bookstore" />
         </set>
-    --></class>
+    </class>
 </hibernate-mapping>
