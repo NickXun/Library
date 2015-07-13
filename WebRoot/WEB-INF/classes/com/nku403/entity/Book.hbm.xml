@@ -35,7 +35,7 @@
             <column name="bookInfo" length="65535" not-null="true" />
         </property>
         <property name="bookAddTime" type="java.sql.Timestamp">
-            <column name="bookAddTime" length="19" not-null="true" />
+            <column name="bookAddTime" length="19" not-null="false" />
         </property>
         <property name="bookFindNumber" type="java.lang.String">
             <column name="bookFindNumber" length="20" not-null="true" unique="true" />

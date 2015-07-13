@@ -8,4 +8,11 @@ public interface UserService {
 	public void add(User user);
 	
 	public List findUser(User user);
+	
+	public List findUserByRight(short i);
+	
+	public User findUserById(int id);
+	
+	public void delUser(User user);
+	
 }

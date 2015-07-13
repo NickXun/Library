@@ -102,7 +102,15 @@ p {
 								</a>
 								<ul class="dropdown-menu">
 									<li>
-										<a href="${pageContext.request.contextPath}/context/user/userhome.jsp">用户中心</a>
+										<s:if test="%{#session.user.useright == 0}">
+											<a href="${pageContext.request.contextPath}/context/user/userhome.jsp">用户中心</a>
+										</s:if>
+										<s:elseif test="%{#session.user.useright == 1}">
+											<a href="${pageContext.request.contextPath}/context/adminpage/libraryadmin.jsp">管理</a>
+										</s:elseif>
+										<s:elseif test="%{#session.user.useright == 2}">
+											<a href="${pageContext.request.contextPath}/context/adminpage/systemadmin.jsp">管理</a>
+										</s:elseif>
 									</li>
 									<li>
 										<a href="#">书架</a>

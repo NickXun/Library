@@ -12,7 +12,7 @@
 			value="com.mysql.jdbc.Driver">
 		</property>
 		<property name="url"
-			value="jdbc:mysql://127.0.0.1:3306/library">
+			value="jdbc:mysql://127.0.0.1:3306/library?characterEncoding=UTF-8">
 		</property>
 		<property name="username" value="root"></property>
 		<property name="password" value="123456"></property>
@@ -78,4 +78,16 @@
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
-	</bean></beans>
+	</bean>
+	<bean id="TypeService" class="com.nku403.serviceimpl.TypeServiceImpl">
+		<property name="typeDAO">
+			<ref bean="TypeDAO" />
+		</property>
+	</bean>
+	
+	<bean id="BookService" class="com.nku403.serviceimpl.BookServiceImpl">
+		<property name="bookDAO">
+			<ref bean="BookDAO" />
+		</property>
+	</bean>
+	</beans>

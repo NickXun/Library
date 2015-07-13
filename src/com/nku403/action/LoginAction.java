@@ -40,6 +40,12 @@ public class LoginAction extends ActionSupport {
 		List temp = service.findUser(user);
 		if (temp.size() > 0) {
 			ActionContext.getContext().getSession().put("user", temp.get(0));
+			User t = (User) temp.get(0);
+			if(t.getUseright() == 2){
+				return "system";
+			}else if(t.getUseright() == 1){
+				return "library";
+			}
 			return "login";
 		}
 		return "input";

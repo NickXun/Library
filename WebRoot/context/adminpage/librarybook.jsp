@@ -99,13 +99,13 @@ header {
 			<div class="row">
 				<div class="col-sm-2">
 					<div class="list-group">
-						<a href="${pageContext.request.contextPath}/context/adminpage/libraryadmin.jsp" class="list-group-item active"> <span
+						<a href="${pageContext.request.contextPath}/context/adminpage/libraryadmin.jsp" class="list-group-item"> <span
 							class="glyphicon glyphicon-home"></span> &nbsp;标签管理 </a>
-						<a href="${pageContext.request.contextPath}/context/adminpage/librarybook.jsp" class="list-group-item"> <span
-							class="glyphicon glyphicon-home"></span> &nbsp;图书管理 </a>
+						<a href="${pageContext.request.contextPath}/context/adminpage/librarybook.jsp" class="list-group-item active"> <span
+							class="glyphicon glyphicon-hom"></span> &nbsp;图书管理 </a>
 					</div>
 				</div>
-				
+				<p><img src="<s:property value="#request.select"/>" width="100px" height="100px"/> </p>
 				<div class="col-sm-10">
 					<div class="panel-group" id="accordion" role="tablist"
 						aria-multiselectable="true">
@@ -114,20 +114,108 @@ header {
 								<h4 class="panel-title">
 									<a role="button" data-toggle="collapse"
 										data-parent="#accordion" href="#collapseOne"
-										aria-expanded="true" aria-controls="collapseOne"> 添加标签
+										aria-expanded="true" aria-controls="collapseOne"> 添加图书
 									</a>
 								</h4>
 							</div>
 							<div id="collapseOne" class="panel-collapse collapse in"
 								role="tabpanel" aria-labelledby="headingOne">
 								<div class="panel-body">
-									<form action="addType" method="post">
+									<form action="addBook" method="post" enctype="multipart/form-data">
 										<div class="form-group">
-											<label for="exampleInputEmail1">
-												标签名称
+											<label for="bookname">
+												图书名称:
 											</label>
 											<input type="text" class="form-control"
-												id="exampleInputEmail1" placeholder="typeName" name="type.typeName">
+												id="bookname" placeholder="bookName" name="book.bookName">
+										</div>
+										
+										<div class="form-group">
+											<label for="bookAuthor">
+												作者:
+											</label>
+											<input type="text" class="form-control"
+												id="bookAuthor" placeholder="bookAuthor" name="book.bookAuthor">
+										</div>
+										
+										<div class="form-group">
+											<label for="bookPress">
+												出版社:
+											</label>
+											<input type="text" class="form-control"
+												id="bookPress" placeholder="bookPress" name="book.bookPress">
+										</div>
+										
+										<div class="form-group">
+											<label for="bookPressTime">
+												出版时间:
+											</label>
+											<input type="text" class="form-control"
+												id="bookPressTime" placeholder="bookPressTime" name="book.bookPressTime">
+										</div>
+										
+										
+										<div class="form-group">
+											<label for="bookISBN">
+												ISBN:
+											</label>
+											<input type="text" class="form-control"
+												id="bookISBN" placeholder="bookISBN" name="book.bookIsbn">
+										</div>
+										
+										
+										<div class="form-group">
+											<label for="bookPicture">
+												图书封面:
+											</label>
+											<input type="file"
+												id="bookPicture" name="upload">
+										</div>
+										
+										<div class="form-group">
+											<label for="bookType">
+												所属类型:
+											</label>
+											<s:action name="getAllType" executeResult="false" />
+											<select class="form-control" id="bookType" name="booktype" >
+												<s:iterator id="type" value="#request.allType">
+												<option value="${type.getTypeId() }">
+													${type.getTypeName() }
+												</option>
+												</s:iterator>
+											</select>
+										</div>
+										
+										<div class="form-group">
+											<label for="bookInfo">
+												图书描述:
+											</label>
+											<textarea  class="form-control"
+												id="bookInfo" placeholder="bookInfo" name="book.bookInfo" rows="3"></textarea>
+										</div>
+										
+										<div class="form-group">
+											<label for="bookFindNumber">
+												索书号:
+											</label>
+											<input type="text" class="form-control"
+												id="bookFindNumber" placeholder="bookFindNumber" name="book.bookFindNumber">
+										</div>
+										
+										<div class="form-group">
+											<label for="bookTotalAmount">
+												馆藏量:
+											</label>
+											<input type="text" class="form-control"
+												id="bookTotalAmount" placeholder="bookTotalAmount" name="book.bookTotalAmount">
+										</div>
+										
+										<div class="form-group">
+											<label for="bookAccessAmount">
+												可借量:
+											</label>
+											<input type="text" class="form-control"
+												id="bookAccessAmount" placeholder="bookAccessAmount" name="book.bookAccessAmount">
 										</div>
 										<button type="submit" class="btn btn-default">确定</button>
 									</form>

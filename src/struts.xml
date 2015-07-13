@@ -9,9 +9,35 @@
 		<action name="LoginAction" class="com.nku403.action.LoginAction" >
 			<result name="login">/index.jsp</result>
 			<result name="input">/index.jsp</result>
+			<result name="system">/context/adminpage/systemadmin.jsp</result>
+			<result name="library">/context/adminpage/libraryadmin.jsp</result>
 		</action>
+		<!-- userAction 系列 -->
 		<action name="UserAction" class="com.nku403.action.UserAction">
 			<result name="success">/index.jsp</result>
 		</action>
+		<action name="insertUser" class="com.nku403.action.UserAction" method="insertUser">
+			<result name="insert">/context/adminpage/systemadmin.jsp</result>
+		</action>
+		<action name="system" class="com.nku403.action.UserAction" method="getLibraryAdmin">
+		</action>
+		<action name="deleteUser" class="com.nku403.action.UserAction" method="deleteUser">
+			<result name="delete">/context/adminpage/systemadmin.jsp</result>
+		</action>
+		
+		<!-- typeAction系列 -->
+		<action name="addType" class="com.nku403.action.TypeAction" method="addType">
+			<result name="success">/context/adminpage/libraryadmin.jsp</result>
+		</action>
+		<action name="getAllType" class="com.nku403.action.TypeAction" method="getAllType">
+		</action>
+		
+		<!-- bookAction系列 -->
+		<action name="addBook" class="com.nku403.action.BookAction" method="addBook">
+		
+			<param name="savePath">/context/img/book</param>
+			<result name="success">/context/adminpage/librarybook.jsp</result>
+		</action>
+		
 	</package>
 </struts>    
