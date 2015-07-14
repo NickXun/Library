@@ -1,5 +1,6 @@
 package com.nku403.daoimpl;
 
+import java.util.Date;
 import java.util.List;
 import org.hibernate.LockMode;
 import org.hibernate.Transaction;
@@ -9,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.nku403.entity.Borrow;
+import com.nku403.entity.BorrowId;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -24,8 +26,9 @@ import com.nku403.entity.Borrow;
 
 public class BorrowDAO extends HibernateDaoSupport {
 	private static final Logger log = LoggerFactory.getLogger(BorrowDAO.class);
-
 	// property constants
+	public static final String IS_LATE = "isLate";
+	public static final String IS_AGAIN_BOR = "isAgainBor";
 
 	protected void initDao() {
 		// do nothing
@@ -93,6 +96,14 @@ public class BorrowDAO extends HibernateDaoSupport {
 			log.error("find by property name failed", re);
 			throw re;
 		}
+	}
+
+	public List findByIsLate(Object isLate) {
+		return findByProperty(IS_LATE, isLate);
+	}
+
+	public List findByIsAgainBor(Object isAgainBor) {
+		return findByProperty(IS_AGAIN_BOR, isAgainBor);
 	}
 
 	public List findAll() {

@@ -15,10 +15,16 @@
             </key-many-to-one>
         </composite-id>
         <property name="borrowDate" type="java.util.Date">
-            <column name="borrowDate" length="10" not-null="false" />
+            <column name="borrowDate" length="10" />
         </property>
         <property name="borrowReturnDate" type="java.util.Date">
-            <column name="borrowReturnDate" length="10" not-null="false" />
+            <column name="borrowReturnDate" length="10" />
+        </property>
+        <property name="isLate" type="java.lang.Short">
+            <column name="isLate" />
+        </property>
+        <property name="isAgainBor" type="java.lang.Short">
+            <column name="isAgainBor" />
         </property>
     </class>
 </hibernate-mapping>

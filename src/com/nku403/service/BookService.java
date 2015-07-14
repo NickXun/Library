@@ -12,4 +12,5 @@ public interface BookService {
 	public Book findBookById(int bookId);
 	
 	public void updateHistory(Book book);
+	
 }

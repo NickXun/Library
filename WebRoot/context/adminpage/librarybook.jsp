@@ -248,6 +248,40 @@ header {
 								</div>
 							</div>
 						</div>
+						<div class="panel panel-primary">
+							<div class="panel-heading" role="tab" id="headingThree">
+								<h4 class="panel-title">
+									<a class="collapsed" role="button" data-toggle="collapse"
+										data-parent="#accordion" href="#collapseThree"
+										aria-expanded="false" aria-controls="collapseThree">
+										归还图书 </a>
+								</h4>
+							</div>
+							<div id="collapseThree" class="panel-collapse collapse"
+								role="tabpanel" aria-labelledby="headingThree">
+								<div class="panel-body">
+									<form>
+										<div class="form-group">
+											<label for="bookId">
+												借书id
+											</label>
+											<input type="text" class="form-control"
+												id="bookId" placeholder="bookId" name="bookId">
+										</div>
+										
+										<div class="form-group">
+											<label for="userId">
+												用户id
+											</label>
+											<input type="text" class="form-control"
+												id="userId" placeholder="userId" name="userId">
+										</div>
+										
+										<button type="button" class="btn btn-default" onclick="returnBook()">确定</button>
+									</form>
+								</div>
+							</div>
+						</div>
 						<!--<div class="panel panel-default">
 							<div class="panel-heading" role="tab" id="headingThree">
 								<h4 class="panel-title">
@@ -302,6 +336,30 @@ header {
 						<%
 						}
 					%>
+				}
+				
+				function returnBook(){
+					$.get("returnBook",
+					{
+						bookId: $("#bookId").val(),
+						userId: $("#userId").val()
+					},
+					function (data){
+						if(data.retinfo == "nouser"){
+							alert("借书人id不存在");
+						}else if(data.retinfo == "nobook"){
+							alert("图书id不存在");
+						}else if(data.retinfo == "noborrow"){
+							alert("不存在借书人或图书");
+						}else if(data.retinfo == "success"){
+							alert("归还成功");
+							$("#bookId").val("");
+							$("#userId").val("");
+						}
+					},
+					"json"
+					);
+					
 				}
 			</script>
 	</body>

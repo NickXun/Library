@@ -13,6 +13,8 @@ public class Borrow implements java.io.Serializable {
 	private BorrowId id;
 	private Date borrowDate;
 	private Date borrowReturnDate;
+	private Short isLate;
+	private Short isAgainBor;
 
 	// Constructors
 
@@ -20,11 +22,19 @@ public class Borrow implements java.io.Serializable {
 	public Borrow() {
 	}
 
+	/** minimal constructor */
+	public Borrow(BorrowId id) {
+		this.id = id;
+	}
+
 	/** full constructor */
-	public Borrow(BorrowId id, Date borrowDate, Date borrowReturnDate) {
+	public Borrow(BorrowId id, Date borrowDate, Date borrowReturnDate,
+			Short isLate, Short isAgainBor) {
 		this.id = id;
 		this.borrowDate = borrowDate;
 		this.borrowReturnDate = borrowReturnDate;
+		this.isLate = isLate;
+		this.isAgainBor = isAgainBor;
 	}
 
 	// Property accessors
@@ -51,6 +61,22 @@ public class Borrow implements java.io.Serializable {
 
 	public void setBorrowReturnDate(Date borrowReturnDate) {
 		this.borrowReturnDate = borrowReturnDate;
+	}
+
+	public Short getIsLate() {
+		return this.isLate;
+	}
+
+	public void setIsLate(Short isLate) {
+		this.isLate = isLate;
+	}
+
+	public Short getIsAgainBor() {
+		return this.isAgainBor;
+	}
+
+	public void setIsAgainBor(Short isAgainBor) {
+		this.isAgainBor = isAgainBor;
 	}
 
 }

@@ -58,5 +58,13 @@
 			
 		</action>
 		
+		<!-- ReturnAction -->
+		
+		<action name="returnBook" class="com.nku403.action.ReturingAction" method="returnBook">
+			
+		</action>
+		<action name="getHistory" class="com.nku403.action.ReturingAction" method="findHistory">
+			
+		</action>
 	</package>
 </struts>    

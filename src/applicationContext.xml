@@ -102,4 +102,10 @@
 			<ref bean="BorrowDAO" />
 		</property>
 	</bean>
+	
+	<bean id="ReturningService" class="com.nku403.serviceimpl.ReturningServiceImpl">
+		<property name="returningDAO">
+			<ref bean="ReturningDAO" />
+		</property>
+	</bean>
 	</beans>

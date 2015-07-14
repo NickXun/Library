@@ -114,13 +114,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<span class="glyphicon glyphicon-home"></span> 首页
 							</h3>
 						</div>
+						<s:action name="getHistory" id="history" ignoreContextParams="true"></s:action>
+						
 						<div class="panel-body">
 							<p>用户名：<s:property value="#session.user.userName"/></p>
 							<p>邮箱：<s:property value="#session.user.userEmail"/></p>
 							<p>手机：<s:property value="#session.user.userPhone"/></p>
-							<p>历史借阅次数:<s:property value="1"/></p>
+							<p>历史借阅次数:<s:property value="#request.hisList.size()"/></p>
 							<p>可借最大数目:10</p>
-							<p>当前借阅数目:5</p>
+							<p>当前借阅数目:</p>
 						</div>
 					</div>
 

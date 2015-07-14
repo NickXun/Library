@@ -84,6 +84,8 @@ public class BorrowAction extends ActionSupport {
 		borrow.setBorrowDate(bordate);
 		borrow.setBorrowReturnDate(retdate);
 		borrow.setId(borrowid);
+		borrow.setIsAgainBor((short) 0);
+		borrow.setIsLate((short) 0);
 		
 		boservice.addBorrow(borrow);
 		json.accumulate("borinfo", "success");

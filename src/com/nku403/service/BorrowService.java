@@ -7,4 +7,6 @@ public interface BorrowService {
 	public void addBorrow(Borrow borrow);
 	
 	public Borrow findBorrowById(BorrowId borrowid);
+	
+	public void delBorrow(Borrow borrow);
 }

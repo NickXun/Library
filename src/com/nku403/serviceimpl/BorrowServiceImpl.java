@@ -23,5 +23,10 @@ public class BorrowServiceImpl implements BorrowService {
 		// TODO Auto-generated method stub
 		return borrowDAO.findById(borrowid);
 	}
+	@Override
+	public void delBorrow(Borrow borrow) {
+		// TODO Auto-generated method stub
+		borrowDAO.delete(borrow);
+	}
 
 }
