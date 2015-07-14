@@ -1,6 +1,6 @@
 package com.nku403.entity;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Borrow entity. @author MyEclipse Persistence Tools
@@ -11,8 +11,8 @@ public class Borrow implements java.io.Serializable {
 	// Fields
 
 	private BorrowId id;
-	private Timestamp borrowDate;
-	private Timestamp borrowReturnDate;
+	private Date borrowDate;
+	private Date borrowReturnDate;
 
 	// Constructors
 
@@ -21,7 +21,7 @@ public class Borrow implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Borrow(BorrowId id, Timestamp borrowDate, Timestamp borrowReturnDate) {
+	public Borrow(BorrowId id, Date borrowDate, Date borrowReturnDate) {
 		this.id = id;
 		this.borrowDate = borrowDate;
 		this.borrowReturnDate = borrowReturnDate;
@@ -37,19 +37,19 @@ public class Borrow implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Timestamp getBorrowDate() {
+	public Date getBorrowDate() {
 		return this.borrowDate;
 	}
 
-	public void setBorrowDate(Timestamp borrowDate) {
+	public void setBorrowDate(Date borrowDate) {
 		this.borrowDate = borrowDate;
 	}
 
-	public Timestamp getBorrowReturnDate() {
+	public Date getBorrowReturnDate() {
 		return this.borrowReturnDate;
 	}
 
-	public void setBorrowReturnDate(Timestamp borrowReturnDate) {
+	public void setBorrowReturnDate(Date borrowReturnDate) {
 		this.borrowReturnDate = borrowReturnDate;
 	}
 

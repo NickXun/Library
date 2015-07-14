@@ -3,6 +3,7 @@ package com.nku403.daoimpl;
 import java.util.List;
 import java.util.Set;
 import org.hibernate.LockMode;
+import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -32,6 +33,7 @@ public class TypeDAO extends HibernateDaoSupport  {
     
     public void save(Type transientInstance) {
         log.debug("saving Type instance");
+        Transaction tran=getSession().beginTransaction();
         try {
             getHibernateTemplate().save(transientInstance);
             log.debug("save successful");
@@ -39,6 +41,9 @@ public class TypeDAO extends HibernateDaoSupport  {
             log.error("save failed", re);
             throw re;
         }
+        tran.commit();
+        getSession().flush(); 
+       getSession().close();
     }
     
 	public void delete(Type persistentInstance) {

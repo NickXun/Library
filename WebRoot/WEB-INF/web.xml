@@ -15,6 +15,23 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
+	 <!-- OpenSessionInViewFilter一定要在struts2后面初始化才行 -->
+    <filter>
+        <filter-name>OpenSessionInViewFilter</filter-name>
+        <filter-class>
+            org.springframework.orm.hibernate3.support.OpenSessionInViewFilter
+        </filter-class>
+        <init-param>  
+           <param-name>flushMode</param-name>  
+           <param-value>AUTO</param-value>  
+       </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>OpenSessionInViewFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+	
 	<filter>
 		<filter-name>struts2</filter-name>
 		<filter-class>
@@ -24,4 +41,6 @@
 		<filter-name>struts2</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	
 </web-app>

@@ -1,15 +1,14 @@
 package com.nku403.daoimpl;
 
-import java.sql.Timestamp;
 import java.util.List;
 import org.hibernate.LockMode;
+import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.nku403.entity.Borrow;
-import com.nku403.entity.BorrowId;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -34,6 +33,7 @@ public class BorrowDAO extends HibernateDaoSupport {
 
 	public void save(Borrow transientInstance) {
 		log.debug("saving Borrow instance");
+		Transaction tran=getSession().beginTransaction();
 		try {
 			getHibernateTemplate().save(transientInstance);
 			log.debug("save successful");
@@ -41,6 +41,9 @@ public class BorrowDAO extends HibernateDaoSupport {
 			log.error("save failed", re);
 			throw re;
 		}
+		tran.commit();
+		getSession().flush(); 
+        getSession().close();
 	}
 
 	public void delete(Borrow persistentInstance) {

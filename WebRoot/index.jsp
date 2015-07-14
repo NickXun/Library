@@ -171,9 +171,10 @@ p {
 								<input type="text" class="form-control"
 									placeholder="Search for...">
 								<span class="input-group-btn">
-									<button class="btn btn-default" type="button">
+									<a href="findAllBook"><button class="btn btn-default" type="button">
+									
 										Go!
-									</button> </span>
+									</button></a> </span>
 							</div>
 							<!-- /input-group -->
 						</div>
@@ -300,6 +301,7 @@ p {
 	function loginerror() {
 		alert("用户名或密码错误");
 	}
+	
 	
 	function register(){
 		userName = $("#userName").val();

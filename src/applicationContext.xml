@@ -90,4 +90,16 @@
 			<ref bean="BookDAO" />
 		</property>
 	</bean>
+	
+	<bean id="BookStoreService" class="com.nku403.serviceimpl.BookStoreServiceImpl">
+		<property name="bookStoreDAO">
+			<ref bean="BookstoreDAO" />
+		</property>
+	</bean>
+	
+	<bean id="BorrowService" class="com.nku403.serviceimpl.BorrowServiceImpl">
+		<property name="borrowDAO">
+			<ref bean="BorrowDAO" />
+		</property>
+	</bean>
 	</beans>

@@ -105,8 +105,8 @@ header {
 							class="glyphicon glyphicon-hom"></span> &nbsp;图书管理 </a>
 					</div>
 				</div>
-				<p><img src="<s:property value="#request.select"/>" width="100px" height="100px"/> </p>
-				<div class="col-sm-10">
+				<!--<p><img src="<s:property value="#request.select"/>" width="100px" height="100px"/> </p>
+				--><div class="col-sm-10">
 					<div class="panel-group" id="accordion" role="tablist"
 						aria-multiselectable="true">
 						<div class="panel panel-primary">
@@ -228,7 +228,7 @@ header {
 									<a class="collapsed" role="button" data-toggle="collapse"
 										data-parent="#accordion" href="#collapseTwo"
 										aria-expanded="false" aria-controls="collapseTwo">
-										删除标签  </a>
+										查找图书  </a>
 								</h4>
 							</div>
 							<div id="collapseTwo" class="panel-collapse collapse"

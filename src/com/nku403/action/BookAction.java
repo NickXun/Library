@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 
@@ -26,6 +27,13 @@ public class BookAction extends ActionSupport {
 	private String uploadFileName;
 	private String savePath;
 	private int booktype;
+	private int bookId;
+	public int getBookId() {
+		return bookId;
+	}
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
+	}
 	public int getBooktype() {
 		return booktype;
 	}
@@ -109,4 +117,33 @@ public class BookAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
+	public String findAllBook(){
+		
+		ServletContext sc = ServletActionContext.getRequest().getSession()
+		.getServletContext();
+
+		ApplicationContext ac = WebApplicationContextUtils
+		.getWebApplicationContext(sc);
+		BookService service = (BookService) ac.getBean("BookService");
+		List temp = service.findAllBook();
+		
+		ServletActionContext.getRequest().setAttribute("bookList", temp);
+		
+		return SUCCESS;
+	}
+	public String findSingleBook(){
+		ServletContext sc = ServletActionContext.getRequest().getSession()
+		.getServletContext();
+
+		ApplicationContext ac = WebApplicationContextUtils
+		.getWebApplicationContext(sc);
+		BookService service = (BookService) ac.getBean("BookService");
+		
+		Book temp = service.findBookById(bookId);
+		
+		ServletActionContext.getRequest().setAttribute("book", temp);
+		ServletActionContext.getRequest().setAttribute("type", temp.getType().getTypeName());
+		
+		return SUCCESS;
+	}
 }

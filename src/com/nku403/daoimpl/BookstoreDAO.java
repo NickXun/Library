@@ -2,6 +2,7 @@ package com.nku403.daoimpl;
 
 import java.util.List;
 import org.hibernate.LockMode;
+import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -34,6 +35,7 @@ public class BookstoreDAO extends HibernateDaoSupport {
 
 	public void save(Bookstore transientInstance) {
 		log.debug("saving Bookstore instance");
+		Transaction tran=getSession().beginTransaction();
 		try {
 			getHibernateTemplate().save(transientInstance);
 			log.debug("save successful");
@@ -41,6 +43,9 @@ public class BookstoreDAO extends HibernateDaoSupport {
 			log.error("save failed", re);
 			throw re;
 		}
+		tran.commit();
+		getSession().flush(); 
+        getSession().close();
 	}
 
 	public void delete(Bookstore persistentInstance) {

@@ -112,39 +112,30 @@ header{
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h3 class="panel-title">
-						共检索到图书100本
+						共检索到图书${request.bookList.size() }本
 					</h3>
 				</div>
 				<div class="panel-body">
+				<s:iterator id="bookList" value="#request.bookList">
 				<div class="row">
-					<div class="col-lg-10">				
-						<p>1.java教程  索书号</p>
-						<p>作者</p>
-						<p>出版社</p>
-						<P>ISBN</P>	
+					<div class="col-lg-1">
+						<img src="<s:property value="#bookList.bookPicture"/>" height="120px" width="80px" />
+					</div>
+					<div class="col-lg-9">				
+						<p><a href="findSingleBook?bookId=<s:property value="#bookList.bookId" />"><s:property value="#bookList.bookName"/> <s:property value="#bookList.bookFindNumber"/></a> </p>
+						<p><s:property value="#bookList.bookAuthor"/></p>
+						<p><s:property value="#bookList.bookPress"/></p>
+						<P><s:property value="#bookList.bookPressTime"/></P>	
 					</div>
 					
 					<div class="col-lg-2">
-						<p>馆藏复本:2</p>
-						<p>当前可借:2</p>
+						<p>馆藏复本:<s:property value="#bookList.bookTotalAmount"/></p>
+						<p>当前可借:<s:property value="#bookList.bookAccessAmount"/></p>
 					</div>
 				</div>
 				<hr>
-				<div class="row">
-					<div class="col-lg-10">				
-						<p>1.java教程  索书号</p>
-						<p>作者</p>
-						<p>出版社</p>
-						<P>ISBN</P>	
-					</div>
-					
-					<div class="col-lg-2">
-						<br>
-						<br>
-						<p>馆藏复本:2</p>
-						<p>当前可借:2</p>
-					</div>
-				</div>
+				</s:iterator>
+				
 				</div>
 			</div>
 			</div>

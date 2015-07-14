@@ -7,9 +7,6 @@
 <hibernate-mapping>
     <class name="com.nku403.entity.Borrow" table="borrow" catalog="library">
         <composite-id name="id" class="com.nku403.entity.BorrowId">
-            <key-property name="borrowId" type="java.lang.Integer">
-                <column name="borrowId" />
-            </key-property>
             <key-many-to-one name="user" class="com.nku403.entity.User">
                 <column name="userId" />
             </key-many-to-one>
@@ -17,11 +14,11 @@
                 <column name="bookId" />
             </key-many-to-one>
         </composite-id>
-        <property name="borrowDate" type="java.sql.Timestamp">
-            <column name="borrowDate" length="19" not-null="true" />
+        <property name="borrowDate" type="java.util.Date">
+            <column name="borrowDate" length="10" not-null="false" />
         </property>
-        <property name="borrowReturnDate" type="java.sql.Timestamp">
-            <column name="borrowReturnDate" length="19" not-null="true" />
+        <property name="borrowReturnDate" type="java.util.Date">
+            <column name="borrowReturnDate" length="10" not-null="false" />
         </property>
     </class>
 </hibernate-mapping>

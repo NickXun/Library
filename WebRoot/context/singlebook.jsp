@@ -121,28 +121,29 @@ header{
 							<p class="right">描述：</p>
 						</div>
 						<div class="col-lg-8">
-							<p>书名：</p>
-							<p>作者：</p>
-							<p>出版社：</p>
-							<p>出版时间：</p>
-							<p>ISBN：</p>
-							<p>所属类别：</p>
-							<p>索书号：</p>
-							<p>馆藏数量：</p>
-							<p>历史借阅量：</p>
-							<p>描述</p>
+							<p><s:property value="#request.book.bookName"/></p>
+							<p><s:property value="#request.book.bookAuthor"/></p>
+							<p><s:property value="#request.book.bookPress"/></p>
+							<p><s:property value="#request.book.bookPressTime"/></p>
+							<p><s:property value="#request.book.bookIsbn"/></p>
+							<p><s:property value="#request.type"/></p>
+							<p><s:property value="#request.book.bookFindNumber"/></p>
+							<p><s:property value="#request.book.bookTotalAmount"/></p>
+							<p><s:property value="#request.book.bookAccessAmount"/></p>
+							<p><s:property value="#request.book.bookHistroy"/></p>
+							<p><s:property value="#request.book.bookInfo"/></p>
 						</div>
 						<div class="col-lg-2">
-							<img src="${pageContext.request.contextPath}/context/img/book/2.jpg" width="120px" height="200px"/>
+							<img src="<s:property value="#request.book.bookPicture" />" width="120px" height="200px"/>
 						</div>
 					</div>
 					
 					<hr>
 					
 					<div class="button-group">
-						<button class="btn btn-primary">借阅</button>
+						<button class="btn btn-primary" onclick="borBook(<s:property value='#request.book.bookId' />)">借阅</button>
 						<button class="btn btn-info">预约</button>
-						<button class="btn btn-warning">收藏</button>
+						<button class="btn btn-warning" onclick="shoucang(<s:property value='#request.book.bookId' />)">收藏</button>
 					</div>
 				</div>
 			</div>
@@ -231,5 +232,62 @@ header{
 			src="${pageContext.request.contextPath}/context/js/jquery.min.js"></script>
 		<script
 			src="${pageContext.request.contextPath}/context/js/bootstrap.min.js"></script>
+
+		<script>
+		<%
+			if(session.getAttribute("user") != null){
+       			out.println("var login = true;");
+       		}
+          	else
+          	{
+            	out.println("var login = false;");
+          	}
+		%>
+	function shoucang(bookId) {
+		alert(bookId);
+			if(!login){
+				alert("请先登录再收藏");
+				return;
+			}
+			
+			$.get("addToBookStore",
+				{
+					"bookId" : bookId
+				},
+				function (data){
+					if(data.info == "exist"){
+						alert("您已经收藏了这本书了");
+					}else if(data.info == "success"){
+						alert("收藏成功");
+					}
+				},
+				"json"
+			);
+		}
+			
+			function borBook(bookId){
+				alert(bookId);
+			if(!login){
+				alert("请先登录再借阅");
+				return;
+			}
+			
+			$.get("borrowBook",
+				{
+					"bookId" : bookId
+				},
+				function (data){
+					if(data.borinfo == "exist"){
+						alert("您已经借阅这本书了");
+					}else if(data.borinfo == "success"){
+						alert("借阅成功");
+					}else if(data.borinfo == "less"){
+						alert("已经没有书可以借了 请尝试预约");
+					}
+				},
+				"json"
+			);
+			}
+</script>
 	</body>
 </html>

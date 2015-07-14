@@ -7,9 +7,6 @@
 <hibernate-mapping>
     <class name="com.nku403.entity.Subscribe" table="subscribe" catalog="library">
         <composite-id name="id" class="com.nku403.entity.SubscribeId">
-            <key-property name="subscribId" type="java.lang.Integer">
-                <column name="subscribId" />
-            </key-property>
             <key-many-to-one name="user" class="com.nku403.entity.User">
                 <column name="userId" />
             </key-many-to-one>

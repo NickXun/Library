@@ -39,5 +39,24 @@
 			<result name="success">/context/adminpage/librarybook.jsp</result>
 		</action>
 		
+		<action name="findAllBook" class="com.nku403.action.BookAction" method="findAllBook">
+			<result name="success">/context/querybook.jsp</result>
+		</action>
+		
+		<action name="findSingleBook" class="com.nku403.action.BookAction" method="findSingleBook">
+			<result name="success">/context/singlebook.jsp</result>
+		</action>
+		
+		<!-- bookStoreAction -->
+		
+		<action name="addToBookStore" class="com.nku403.action.BookStoreAction" method="addToBookStore">
+			
+		</action>
+		
+		<!-- BorrowAction -->
+		<action name="borrowBook" class="com.nku403.action.BorrowAction" method="borrowBook">
+			
+		</action>
+		
 	</package>
 </struts>    

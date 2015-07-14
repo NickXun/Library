@@ -8,7 +8,6 @@ public class BorrowId implements java.io.Serializable {
 
 	// Fields
 
-	private Integer borrowId;
 	private User user;
 	private Book book;
 
@@ -19,21 +18,12 @@ public class BorrowId implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public BorrowId(Integer borrowId, User user, Book book) {
-		this.borrowId = borrowId;
+	public BorrowId(User user, Book book) {
 		this.user = user;
 		this.book = book;
 	}
 
 	// Property accessors
-
-	public Integer getBorrowId() {
-		return this.borrowId;
-	}
-
-	public void setBorrowId(Integer borrowId) {
-		this.borrowId = borrowId;
-	}
 
 	public User getUser() {
 		return this.user;
@@ -60,12 +50,9 @@ public class BorrowId implements java.io.Serializable {
 			return false;
 		BorrowId castOther = (BorrowId) other;
 
-		return ((this.getBorrowId() == castOther.getBorrowId()) || (this
-				.getBorrowId() != null && castOther.getBorrowId() != null && this
-				.getBorrowId().equals(castOther.getBorrowId())))
-				&& ((this.getUser() == castOther.getUser()) || (this.getUser() != null
-						&& castOther.getUser() != null && this.getUser()
-						.equals(castOther.getUser())))
+		return ((this.getUser() == castOther.getUser()) || (this.getUser() != null
+				&& castOther.getUser() != null && this.getUser().equals(
+				castOther.getUser())))
 				&& ((this.getBook() == castOther.getBook()) || (this.getBook() != null
 						&& castOther.getBook() != null && this.getBook()
 						.equals(castOther.getBook())));
@@ -74,8 +61,6 @@ public class BorrowId implements java.io.Serializable {
 	public int hashCode() {
 		int result = 17;
 
-		result = 37 * result
-				+ (getBorrowId() == null ? 0 : this.getBorrowId().hashCode());
 		result = 37 * result
 				+ (getUser() == null ? 0 : this.getUser().hashCode());
 		result = 37 * result

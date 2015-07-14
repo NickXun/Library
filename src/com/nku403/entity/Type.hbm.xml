@@ -17,7 +17,7 @@
             <key>
                 <column name="bookType" not-null="true" />
             </key>
-            <one-to-many class="com.nku403.entity.Book" />
+            <one-to-many class="com.nku403.entity.Book"  />
         </set>
     </class>
 </hibernate-mapping>

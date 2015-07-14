@@ -146,7 +146,7 @@ header {
 							<div id="collapseTwo" class="panel-collapse collapse"
 								role="tabpanel" aria-labelledby="headingTwo">
 								<div class="panel-body">
-									<s:action name="getAllType" executeResult="false"></s:action>
+									<s:action name="getAllType" executeResult="false" ignoreContextParams="true"></s:action>
 									<table class="table table-hover">
 										<tr>
 											<th>类型序号</th>
@@ -154,7 +154,7 @@ header {
 											<th>移除</th>
 										</tr>
 										<s:iterator id="type" value="#request.allType">
-										<tr><td>${type.getTypeId()}</td><td>${type.getTypeName()}</td><td><a href="#"><span class="glyphicon glyphicon-remove"></span></a></td></tr>
+										<tr><td><s:property value="#type.typeId" /></td><td><s:property value="#type.typeName" /></td><td><a href="#"><span class="glyphicon glyphicon-remove"></span></a></td></tr>
 										</s:iterator>
 									</table>
 								</div>

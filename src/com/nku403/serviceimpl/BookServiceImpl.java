@@ -1,5 +1,7 @@
 package com.nku403.serviceimpl;
 
+import java.util.List;
+
 import com.nku403.daoimpl.BookDAO;
 import com.nku403.entity.Book;
 import com.nku403.service.BookService;
@@ -16,6 +18,21 @@ public class BookServiceImpl implements BookService {
 	public void addBook(Book book) {
 		// TODO Auto-generated method stub
 		bookDAO.save(book);
+	}
+	@Override
+	public List findAllBook() {
+		// TODO Auto-generated method stub
+		return bookDAO.findAll();
+	}
+	@Override
+	public Book findBookById(int bookId) {
+		// TODO Auto-generated method stub
+		return bookDAO.findById(bookId);
+	}
+	@Override
+	public void updateHistory(Book book) {
+		// TODO Auto-generated method stub
+		bookDAO.attachDirty(book);
 	}
 
 }
