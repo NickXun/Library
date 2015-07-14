@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.nku403.daoimpl.BookstoreDAO;
 import com.nku403.entity.Bookstore;
+import com.nku403.entity.BookstoreId;
 import com.nku403.service.BookStoreService;
 
 public class BookStoreServiceImpl implements BookStoreService {
@@ -21,9 +22,11 @@ public class BookStoreServiceImpl implements BookStoreService {
 		return bookStoreDAO;
 	}
 	@Override
-	public List findBookInBookStore(Bookstore bookstore) {
+	public Bookstore findBookInBookStore(BookstoreId bookstoreid) {
 		// TODO Auto-generated method stub
-		return bookStoreDAO.findByExample(bookstore);
+		return bookStoreDAO.findById(bookstoreid);
 	}
+	
+	
 
 }

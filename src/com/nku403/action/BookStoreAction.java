@@ -43,17 +43,17 @@ public class BookStoreAction extends ActionSupport {
 		User user = (User) ActionContext.getContext().getSession().get("user");
 		
 		Book book = bservice.findBookById(bookId);
-		
+		System.out.println(user.getUserName());
 		BookstoreId bookstoreid = new BookstoreId();
 		bookstoreid.setBook(book);
 		bookstoreid.setUser(user);
+
 		Bookstore bookstore = new Bookstore();
 		bookstore.setId(bookstoreid);
 		
-		
-		List temp = bsservice.findBookInBookStore(bookstore);
+		Bookstore temp = bsservice.findBookInBookStore(bookstoreid);
 		JSONObject json = new JSONObject();
-		if(temp.size() > 0){
+		if(temp != null){
 			json.accumulate("info", "exist");
 			System.out.println(json.toString());
 			ServletActionContext.getResponse().getWriter().print(json.toString());
