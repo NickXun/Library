@@ -83,6 +83,10 @@ public class ReturingAction extends ActionSupport {
 		
 		boservice.delBorrow(borrow);
 		
+		book.setBookAccessAmount((short) (book.getBookAccessAmount() + 1));
+		
+		bookservice.updateHistory(book);
+		
 		ReturningId retId = new ReturningId();
 		retId.setBook(book);
 		retId.setUser(user);

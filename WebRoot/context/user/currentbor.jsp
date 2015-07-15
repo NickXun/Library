@@ -97,11 +97,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<!-- 左侧导航栏 -->
 				<div class="col-sm-2">
 					<div class="list-group">
-						<a href="#" class="list-group-item"> <span class="glyphicon glyphicon-home"></span>&nbsp;个人信息 </a>
-						<a href="#" class="list-group-item active"> <span class="glyphicon glyphicon-paperclip"></span>&nbsp;当前借阅 </a>
-						<a href="#" class="list-group-item"> <span class="glyphicon glyphicon-cloud"></span>&nbsp;历史借阅 </a>
-						<a href="#" class="list-group-item"> &nbsp;账目清单 </a>
-						<a href="#" class="list-group-item"> <span class="glyphicon glyphicon-book"></span> &nbsp;书架 </a>
+						<a href="${pageContext.request.contextPath}/context/user/userhome.jsp" class="list-group-item"> <span class="glyphicon glyphicon-home"></span> &nbsp;个人信息 </a>
+						<a href="${pageContext.request.contextPath}/context/user/currentbor.jsp" class="list-group-item active"> <span class="glyphicon glyphicon-paperclip"></span> &nbsp;当前借阅 </a>
+						<a href="${pageContext.request.contextPath}/context/user/historybor.jsp" class="list-group-item"> <span class="glyphicon glyphicon-cloud"></span> &nbsp;历史借阅 </a>
+						<a href="${pageContext.request.contextPath}/context/user/moneypage.jsp" class="list-group-item"> 账目清单 </a>
+						<a href="${pageContext.request.contextPath}/context/user/bookshelf.jsp" class="list-group-item"> <span class="glyphicon glyphicon-book"></span> &nbsp;书架 </a>
 					</div>
 				</div>
 				
@@ -115,6 +115,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="panel-body">
 							<p></p>
 							<p></p>
+							<s:action name="curBorrow" id="curBor" ignoreContextParams="true"></s:action>
 							<table class="table">
 								<thead>
 									<tr>
@@ -124,17 +125,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<th>应还日期</th>
 									<th>续借量</th>
 									<th></th>
-									<th></th>
 									</tr>
 								</thead>
 								<tbody>
+									<% int i = 1; %>
+									<s:iterator id="curbor" value="#request.curBor">
+									
 									<tr>
-										<td>1</td><td><a href="#">一哥是我儿</a></td><td>2010.10.10</td><td>2010.11.10</td><td>0</td><td><a href=#>续借</a></td><td>详情</td>
+										<td><%out.print(i++); %></td><td><a href="findSingleBook?BookId=<s:property value="#curbor.getId().getBook().getBookId()" />"><s:property value="#curbor.getId().getBook().getBookName()"/> </a></td><td>20<s:property value="#curbor.getBorrowDate()"/></td><td id="retDate">20<s:property value="#curbor.getBorrowReturnDate()"/></td><td id="againBor"><s:property value="#curbor.getIsAgainBor()"/></td><td><a href="javascript:void(0);" onclick="againBor(<s:property value='#curbor.getId().getBook().getBookId()' />)">续借</a></td>
 									</tr>
-									<tr>
-										<td>1</td><td>一哥是我儿</td><td>2010.10.10</td><td>2010.11.10</td><td>0</td><td><a href=#>续借</a></td><td>详情</td>
-									</tr>
+									</s:iterator>
 								</tbody>
+								
 							</table>
 						</div>
 					</div>
@@ -158,5 +160,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			src="${pageContext.request.contextPath}/context/js/jquery.min.js"></script>
 		<script
 			src="${pageContext.request.contextPath}/context/js/bootstrap.min.js"></script>
+			
+		<script>
+			function againBor(bookId){
+				$.get("agaginBorrow",
+				{
+					"bookId":bookId
+				},
+				function(data){
+					if(data.againinfo == "again"){
+						alert("已经续借过一次 不能再续借了");
+						return;
+					}else if(data.againinfo == "success"){
+						alert("续借成功！日期延长到"+data.retdate);
+						$("#retDate").html(data.retdate);
+						$("#againBor").html(1);
+					}
+				},
+				"json"
+				);
+			}
+		</script>
 	</body>
 </html>

@@ -132,6 +132,7 @@ public class BorrowDAO extends HibernateDaoSupport {
 
 	public void attachDirty(Borrow instance) {
 		log.debug("attaching dirty Borrow instance");
+		Transaction tran=getSession().beginTransaction();
 		try {
 			getHibernateTemplate().saveOrUpdate(instance);
 			log.debug("attach successful");
@@ -139,6 +140,9 @@ public class BorrowDAO extends HibernateDaoSupport {
 			log.error("attach failed", re);
 			throw re;
 		}
+		tran.commit();
+		getSession().flush(); 
+        getSession().close();
 	}
 
 	public void attachClean(Borrow instance) {

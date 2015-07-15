@@ -97,11 +97,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<!-- 左侧导航栏 -->
 				<div class="col-sm-2">
 					<div class="list-group">
-						<a href="#" class="list-group-item"> <span class="glyphicon glyphicon-home"></span>&nbsp;个人信息 </a>
-						<a href="#" class="list-group-item"> <span class="glyphicon glyphicon-paperclip"></span>&nbsp;当前借阅 </a>
-						<a href="#" class="list-group-item active"> <span class="glyphicon glyphicon-cloud"></span>&nbsp;历史借阅 </a>
-						<a href="#" class="list-group-item"> &nbsp;账目清单 </a>
-						<a href="#" class="list-group-item"> <span class="glyphicon glyphicon-book"></span> &nbsp;书架 </a>
+						<a href="${pageContext.request.contextPath}/context/user/userhome.jsp" class="list-group-item "> <span class="glyphicon glyphicon-home"></span> &nbsp;个人信息 </a>
+						<a href="${pageContext.request.contextPath}/context/user/currentbor.jsp" class="list-group-item"> <span class="glyphicon glyphicon-paperclip"></span> &nbsp;当前借阅 </a>
+						<a href="${pageContext.request.contextPath}/context/user/historybor.jsp" class="list-group-item active"> <span class="glyphicon glyphicon-cloud"></span> &nbsp;历史借阅 </a>
+						<a href="${pageContext.request.contextPath}/context/user/moneypage.jsp" class="list-group-item"> 账目清单 </a>
+						<a href="${pageContext.request.contextPath}/context/user/bookshelf.jsp" class="list-group-item"> <span class="glyphicon glyphicon-book"></span> &nbsp;书架 </a>
 					</div>
 				</div>
 				

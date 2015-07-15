@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.Servlet;
 import javax.servlet.ServletContext;
 
 import net.sf.json.JSONObject;
@@ -97,5 +98,66 @@ public class BorrowAction extends ActionSupport {
 		
 		bservice.updateHistory(book);
 	}
+	public void curBorrow() throws ParseException{
+		
+		ServletContext sc = ServletActionContext.getRequest().getSession()
+		.getServletContext();
+
+		ApplicationContext ac = WebApplicationContextUtils
+		.getWebApplicationContext(sc);
+		
+		BorrowService boservice = (BorrowService) ac.getBean("BorrowService");
+		List temp = boservice.curBorrow((User) ServletActionContext.getContext().getSession().get("user"));
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		for(int i = 0; i < temp.size();i++){
+			Borrow borrow = (Borrow) temp.get(i);
+			borrow.setBorrowDate(sdf.parse(sdf.format(borrow.getBorrowDate())));
+			borrow.setBorrowReturnDate(sdf.parse(sdf.format(borrow.getBorrowReturnDate())));
+			System.out.println(borrow.getBorrowReturnDate());
+		}
+		
+		ServletActionContext.getRequest().setAttribute("curBor", temp);
+	}
 	
+	public void againBorrow() throws IOException, ParseException{
+		
+		ServletContext sc = ServletActionContext.getRequest().getSession()
+		.getServletContext();
+
+		ApplicationContext ac = WebApplicationContextUtils
+		.getWebApplicationContext(sc);
+		
+		BorrowService boservice = (BorrowService) ac.getBean("BorrowService");
+		BookService bservice = (BookService) ac.getBean("BookService");
+		
+		Book book = bservice.findBookById(bookId);
+		User user = (User) ServletActionContext.getContext().getSession().get("user");
+		JSONObject json = new JSONObject();
+		
+		BorrowId borrowid = new BorrowId();
+		
+		borrowid.setBook(book);
+		borrowid.setUser(user);
+		
+		Borrow borrow = boservice.findBorrowById(borrowid);
+		if(borrow.getIsAgainBor() == 1){
+			json.accumulate("againinfo", "again");
+			ServletActionContext.getResponse().getWriter().print(json.toString());
+			return;
+		}
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(borrow.getBorrowReturnDate());
+		calendar.add(Calendar.MONTH, 1);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-d");
+		
+		borrow.setIsAgainBor((short) 1);
+		borrow.setBorrowReturnDate(sdf.parse(sdf.format(calendar.getTime())));
+		
+		boservice.againBorrow(borrow);
+		json.accumulate("againinfo", "success");
+		json.accumulate("retdate",sdf.format(calendar.getTime()));
+		ServletActionContext.getResponse().getWriter().print(json.toString());
+		
+	}
 }

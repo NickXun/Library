@@ -57,6 +57,12 @@
 		<action name="borrowBook" class="com.nku403.action.BorrowAction" method="borrowBook">
 			
 		</action>
+		<action name="curBorrow" class="com.nku403.action.BorrowAction" method="curBorrow">
+			
+		</action>
+		<action name="agaginBorrow" class="com.nku403.action.BorrowAction" method="againBorrow">
+			
+		</action>
 		
 		<!-- ReturnAction -->
 		

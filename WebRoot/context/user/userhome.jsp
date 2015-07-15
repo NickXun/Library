@@ -99,11 +99,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<!-- 左侧导航栏 -->
 				<div class="col-sm-2">
 					<div class="list-group">
-						<a href="#" class="list-group-item active"> <span class="glyphicon glyphicon-home"></span> &nbsp;个人信息 </a>
-						<a href="#" class="list-group-item"> <span class="glyphicon glyphicon-paperclip"></span> &nbsp;当前借阅 </a>
-						<a href="#" class="list-group-item"> <span class="glyphicon glyphicon-cloud"></span> &nbsp;历史借阅 </a>
-						<a href="#" class="list-group-item"> 账目清单 </a>
-						<a href="#" class="list-group-item"> <span class="glyphicon glyphicon-book"></span> &nbsp;书架 </a>
+						<a href="${pageContext.request.contextPath}/context/user/userhome.jsp" class="list-group-item active"> <span class="glyphicon glyphicon-home"></span> &nbsp;个人信息 </a>
+						<a href="${pageContext.request.contextPath}/context/user/currentbor.jsp" class="list-group-item"> <span class="glyphicon glyphicon-paperclip"></span> &nbsp;当前借阅 </a>
+						<a href="${pageContext.request.contextPath}/context/user/historybor.jsp" class="list-group-item"> <span class="glyphicon glyphicon-cloud"></span> &nbsp;历史借阅 </a>
+						<a href="${pageContext.request.contextPath}/context/user/moneypage.jsp" class="list-group-item"> 账目清单 </a>
+						<a href="${pageContext.request.contextPath}/context/user/bookshelf.jsp" class="list-group-item"> <span class="glyphicon glyphicon-book"></span> &nbsp;书架 </a>
 					</div>
 				</div>
 				
@@ -115,14 +115,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</h3>
 						</div>
 						<s:action name="getHistory" id="history" ignoreContextParams="true"></s:action>
-						
+						<s:action name="curBorrow" id="curbor" ignoreContextParams="true"></s:action>
 						<div class="panel-body">
 							<p>用户名：<s:property value="#session.user.userName"/></p>
 							<p>邮箱：<s:property value="#session.user.userEmail"/></p>
 							<p>手机：<s:property value="#session.user.userPhone"/></p>
 							<p>历史借阅次数:<s:property value="#request.hisList.size()"/></p>
 							<p>可借最大数目:10</p>
-							<p>当前借阅数目:</p>
+							<p>当前借阅数目:<s:property value="#request.curBor.size()"/></p>
 						</div>
 					</div>
 
