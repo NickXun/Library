@@ -13,4 +13,7 @@ public interface BookService {
 	
 	public void updateHistory(Book book);
 	
+	public List getHotBooks();
+	
+	public List findSpecialBooks(String queryName,String value);
 }

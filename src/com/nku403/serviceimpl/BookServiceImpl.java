@@ -34,5 +34,15 @@ public class BookServiceImpl implements BookService {
 		// TODO Auto-generated method stub
 		bookDAO.attachDirty(book);
 	}
+	@Override
+	public List getHotBooks() {
+		// TODO Auto-generated method stub
+		return bookDAO.findByHotBook();
+	}
+	@Override
+	public List findSpecialBooks(String queryName, String value) {
+		// TODO Auto-generated method stub
+		return bookDAO.findSpecialBooks(queryName, value);
+	}
 
 }

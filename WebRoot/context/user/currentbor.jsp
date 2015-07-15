@@ -31,6 +31,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	header{
 		margin-bottom:100px;
 	}
+	
+	.table>tbody>tr>td{
+		vertical-align:center;
+	}
 </style>
 	</head>
 
@@ -100,7 +104,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<a href="${pageContext.request.contextPath}/context/user/userhome.jsp" class="list-group-item"> <span class="glyphicon glyphicon-home"></span> &nbsp;个人信息 </a>
 						<a href="${pageContext.request.contextPath}/context/user/currentbor.jsp" class="list-group-item active"> <span class="glyphicon glyphicon-paperclip"></span> &nbsp;当前借阅 </a>
 						<a href="${pageContext.request.contextPath}/context/user/historybor.jsp" class="list-group-item"> <span class="glyphicon glyphicon-cloud"></span> &nbsp;历史借阅 </a>
-						<a href="${pageContext.request.contextPath}/context/user/moneypage.jsp" class="list-group-item"> 账目清单 </a>
+						<a href="${pageContext.request.contextPath}/context/user/moneypage.jsp" class="list-group-item"><span class="glyphicon glyphicon-usd"></span> 账目清单 </a>
 						<a href="${pageContext.request.contextPath}/context/user/bookshelf.jsp" class="list-group-item"> <span class="glyphicon glyphicon-book"></span> &nbsp;书架 </a>
 					</div>
 				</div>
@@ -116,7 +120,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<p></p>
 							<p></p>
 							<s:action name="curBorrow" id="curBor" ignoreContextParams="true"></s:action>
-							<table class="table">
+							<table  class="table table-hover">
 								<thead>
 									<tr>
 									<th>编号</th>
@@ -132,7 +136,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<s:iterator id="curbor" value="#request.curBor">
 									
 									<tr>
-										<td><%out.print(i++); %></td><td><a href="findSingleBook?BookId=<s:property value="#curbor.getId().getBook().getBookId()" />"><s:property value="#curbor.getId().getBook().getBookName()"/> </a></td><td>20<s:property value="#curbor.getBorrowDate()"/></td><td id="retDate">20<s:property value="#curbor.getBorrowReturnDate()"/></td><td id="againBor"><s:property value="#curbor.getIsAgainBor()"/></td><td><a href="javascript:void(0);" onclick="againBor(<s:property value='#curbor.getId().getBook().getBookId()' />)">续借</a></td>
+										<td><%out.print(i++); %></td><td><a href="findSingleBook?BookId=<s:property value="#curbor.getId().getBook().getBookId()" />"><s:property value="#curbor.getId().getBook().getBookName()"/> </a></td><td>20<s:property value="#curbor.getBorrowDate()"/></td><td id="retDate">20<s:property value="#curbor.getBorrowReturnDate()"/></td><td id="againBor"><s:property value="#curbor.getIsAgainBor()"/></td><td><a href="javascript:void(0);" onclick="againBor(<s:property value='#curbor.getId().getBook().getBookId()' />)"><button class="btn btn-success">续借</button></a></td>
 									</tr>
 									</s:iterator>
 								</tbody>

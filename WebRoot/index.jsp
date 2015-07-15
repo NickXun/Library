@@ -141,17 +141,19 @@ p {
 					<div class="panel panel-info">
 					<div class="panel-heading">
 					<h3 align="center">
-						每日
+						精彩
 						<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-						一书
+						推荐
 					</h3>
 					</div>
+					<s:action name="findOneBook"></s:action>
+					
 					<div class="bottom-bar">
-					<img src="${pageContext.request.contextPath}/context/img/book/2.jpg" width="180px" height="250px"  />
+					<img src="<s:property value="#request.bookList.get(#request.num).getBookPicture()" />" width="180px" height="250px"  />
 					
 					<p>
 						<a class="btn btn-primary"
-							href="#" role="button">View
+							href="findSingleBook?bookId=<s:property value="#request.bookList.get(#request.num).getBookId()" />" role="button">View
 							details »</a>
 					</p>
 					</div>
@@ -165,18 +167,35 @@ p {
 					</h3>
 					</div>
 					<div class="bottom-bar">
+						<div class="row">
+							<div class="col-lg-4">
+								<select class="form-control" id="choice">
+										<option value="all">
+											全部
+										</option>
+										<option value="findnum">
+											索书号
+										</option>
+										<option value="name">
+											书名
+										</option>
+								</select>
+								</div>
+						</div>
 						
+						<div class="row">
 						<div class="col-lg-12">
 							<div class="input-group">
 								<input type="text" class="form-control"
-									placeholder="Search for...">
+									placeholder="Search for..." id="queryValue">
 								<span class="input-group-btn">
-									<a href="findAllBook"><button class="btn btn-default" type="button">
+									<button class="btn btn-default" type="button" onclick="findBook()">
 									
 										Go!
-									</button></a> </span>
+									</button> </span>
 							</div>
 							<!-- /input-group -->
+						</div>
 						</div>
 						<p></p>
 						<p></p>
@@ -187,6 +206,7 @@ p {
 					</div>
 				</div>
 				<div class="col-md-4">
+					<s:action name="findHotBooks"></s:action>
 					<div class="panel panel-danger">
 					<div class="panel-heading">
 					<h3 align="center">
@@ -203,10 +223,13 @@ p {
    		 							<th>详情</th>
    		 						</tr>
    		 					</thead>
+   		 					<%int i = 1; %>
    		 					<tbody>
+   		 						<s:iterator id="hotlist" value="#request.hotBookList">
    		 						<tr>
-   		 							<td>1</td><td>小黄书</td><td>10</td><td><a href="#"><span class="glyphicon glyphicon-list-alt"></span></a></td>
+   		 							<td><%out.print(i++); %></td><td><s:property value="#hotlist.getBookName()"/> </td><td><s:property value="#hotlist.getBookHistory()"/></td><td><a href="findSingleBook?bookId=<s:property value="#hotlist.getBookId()"/>"><span class="glyphicon glyphicon-list-alt"></span></a></td>
    		 						</tr>
+   		 						</s:iterator>
    		 					</tbody>
   						</table>
 					</div>
@@ -327,6 +350,17 @@ p {
             });
 		
 	}
+	
+	function findBook(){
+		alert($("#choice").val());
+		var choice = $("#choice").val();
+		if(choice == "all"){
+			window.location.href="findAllBook"; 
+		}else {
+			window.location.href="querySpecialBooks?queryName="+choice+"&queryValue="+$("#queryValue").val(); 
+		}
+		
+		}
 		</script>
 
 	</body>

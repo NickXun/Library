@@ -100,7 +100,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<a href="${pageContext.request.contextPath}/context/user/userhome.jsp" class="list-group-item "> <span class="glyphicon glyphicon-home"></span> &nbsp;个人信息 </a>
 						<a href="${pageContext.request.contextPath}/context/user/currentbor.jsp" class="list-group-item"> <span class="glyphicon glyphicon-paperclip"></span> &nbsp;当前借阅 </a>
 						<a href="${pageContext.request.contextPath}/context/user/historybor.jsp" class="list-group-item active"> <span class="glyphicon glyphicon-cloud"></span> &nbsp;历史借阅 </a>
-						<a href="${pageContext.request.contextPath}/context/user/moneypage.jsp" class="list-group-item"> 账目清单 </a>
+						<a href="${pageContext.request.contextPath}/context/user/moneypage.jsp" class="list-group-item"> <span class="glyphicon glyphicon-usd"></span>账目清单 </a>
 						<a href="${pageContext.request.contextPath}/context/user/bookshelf.jsp" class="list-group-item"> <span class="glyphicon glyphicon-book"></span> &nbsp;书架 </a>
 					</div>
 				</div>
@@ -115,7 +115,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="panel-body">
 							<p></p>
 							<p></p>
-							<table class="table">
+							<table  class="table table-hover">
+								<s:action name="getHistory"></s:action>
 								<thead>
 									<tr>
 									<th>编号</th>
@@ -126,10 +127,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>1</td><td><a href="#">一哥是我儿</a></td><td>曹逊</td><td>2010.11.10</td><td>2011.10.11</td>
-									</tr>
+									<% int i = 1; %>
+									<s:iterator id="hisList" value="#request.hisList">
 									
+									<tr>
+										<td><%out.print(i++); %></td><td><a href="findSingleBook?bookId=<s:property value="#hisList.getId().getBook().getBookId()"/>"><s:property value="#hisList.getId().getBook().getBookName()"/> </a></td><td><s:property value="#hisList.getId().getBook().getBookAuthor()"/> </td><td>20<s:property value="#hisList.getBorrowDate()"/> </td><td>20<s:property value="#hisList.getReturnDate()"/> </td>
+									</tr>
+									</s:iterator>
 								</tbody>
 							</table>
 						</div>

@@ -68,12 +68,18 @@ public class BookStoreAction extends ActionSupport {
 	   
 	}
 	
-	public void borrowBook(){
+	public void getBookShelf(){
 		ServletContext sc = ServletActionContext.getRequest().getSession()
 		.getServletContext();
 
 		ApplicationContext ac = WebApplicationContextUtils
 		.getWebApplicationContext(sc);
+		
+		BookStoreService bookstoreservice = (BookStoreService) ac.getBean("BookStoreService");
+		
+		List temp = bookstoreservice.getBookStoreList((User) ServletActionContext.getContext().getSession().get("user"));
+		
+		ServletActionContext.getRequest().setAttribute("bookstorelist", temp);
 		
 	}
 	

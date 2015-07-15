@@ -5,8 +5,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.ServletContext;
 
@@ -28,6 +30,7 @@ public class BookAction extends ActionSupport {
 	private String savePath;
 	private int booktype;
 	private int bookId;
+	private String queryName;
 	public int getBookId() {
 		return bookId;
 	}
@@ -145,5 +148,63 @@ public class BookAction extends ActionSupport {
 		ServletActionContext.getRequest().setAttribute("type", temp.getType().getTypeName());
 		
 		return SUCCESS;
+	}
+	
+	public void findOneBook(){
+		ServletContext sc = ServletActionContext.getRequest().getSession()
+		.getServletContext();
+
+		ApplicationContext ac = WebApplicationContextUtils
+		.getWebApplicationContext(sc);
+		BookService service = (BookService) ac.getBean("BookService");
+		List temp = service.findAllBook();
+		Random random = new Random();
+		int num = random.nextInt(temp.size());
+		
+		ServletActionContext.getRequest().setAttribute("bookList", temp);
+		ServletActionContext.getRequest().setAttribute("num", num);
+	}
+	
+	public void findHotBooks(){
+		ServletContext sc = ServletActionContext.getRequest().getSession()
+		.getServletContext();
+
+		ApplicationContext ac = WebApplicationContextUtils
+		.getWebApplicationContext(sc);
+		BookService service = (BookService) ac.getBean("BookService");
+		
+		List temp = service.getHotBooks();
+		ServletActionContext.getRequest().setAttribute("hotBookList", temp);
+		
+	}
+	
+	public String querySpecialBooks() throws UnsupportedEncodingException{
+		ServletContext sc = ServletActionContext.getRequest().getSession()
+		.getServletContext();
+
+		ApplicationContext ac = WebApplicationContextUtils
+		.getWebApplicationContext(sc);
+		BookService service = (BookService) ac.getBean("BookService");
+		String queryValue = new String(ServletActionContext.getRequest().getParameter("queryValue").getBytes("ISO-8859-1"),"utf-8");
+		List temp = null;
+		System.out.println(queryName);
+		if(queryName.equals("name")){
+			temp = service.findSpecialBooks("bookName", queryValue);
+			System.out.println(queryValue);
+		}else if(queryName.equals("findnum")){
+			temp = service.findSpecialBooks("bookFindNumber", queryValue);
+			System.out.println(queryName);
+		}
+		System.out.println("queryValue"+queryValue);
+		ServletActionContext.getRequest().setAttribute("bookList", temp);
+		return SUCCESS;
+	}
+	
+	
+	public void setQueryName(String queryName) {
+		this.queryName = queryName;
+	}
+	public String getQueryName() {
+		return queryName;
 	}
 }

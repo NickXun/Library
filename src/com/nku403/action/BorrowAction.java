@@ -69,6 +69,15 @@ public class BorrowAction extends ActionSupport {
 			ServletActionContext.getResponse().getWriter().print(json.toString());
 			return;
 		}
+		List booklist = boservice.curBorrow(user);
+		System.out.println(booklist.size());
+		if(booklist.size() > 10){
+			json.accumulate("borinfo", "more");
+			ServletActionContext.getResponse().getWriter().print(json.toString());
+			return;
+		}
+		
+		
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date bordate = sdf.parse(sdf.format(new Date()));

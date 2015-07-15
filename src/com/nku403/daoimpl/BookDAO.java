@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Set;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -96,6 +97,34 @@ public class BookDAO extends HibernateDaoSupport {
 			String queryString = "from Book as model where model."
 					+ propertyName + "= ?";
 			return getHibernateTemplate().find(queryString, value);
+		} catch (RuntimeException re) {
+			log.error("find by property name failed", re);
+			throw re;
+		}
+	}
+	
+	public List findSpecialBooks(String propertyName, Object value){
+		log.debug("finding Book instance with property: " + propertyName
+				+ ", value: " + value);
+		System.out.println("1"+propertyName+"¸£"+value);
+		try {
+			String queryString = "from Book as model where model."
+					+ propertyName + " like '%"+value+"%'";
+			System.out.println(queryString);
+			return getHibernateTemplate().find(queryString);
+		} catch (RuntimeException re) {
+			log.error("find by property name failed", re);
+			throw re;
+		}
+	}
+	
+	public List findByHotBook(){
+		try {
+			String queryString = "from Book as model where model.bookHistory > 0 order by model.bookHistory desc";
+			Query queryObject = getSession().createQuery(queryString);
+			queryObject.setFirstResult(0);
+			queryObject.setMaxResults(8);
+			return queryObject.list();
 		} catch (RuntimeException re) {
 			log.error("find by property name failed", re);
 			throw re;

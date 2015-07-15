@@ -46,10 +46,20 @@
 		<action name="findSingleBook" class="com.nku403.action.BookAction" method="findSingleBook">
 			<result name="success">/context/singlebook.jsp</result>
 		</action>
+		<action name="findOneBook" class="com.nku403.action.BookAction" method="findOneBook">
+		</action>
+		<action name="findHotBooks" class="com.nku403.action.BookAction" method="findHotBooks">
+		</action>
+		<action name="querySpecialBooks" class="com.nku403.action.BookAction" method="querySpecialBooks">
+			<result name="success">/context/querybook.jsp</result>
+		</action>
 		
 		<!-- bookStoreAction -->
 		
 		<action name="addToBookStore" class="com.nku403.action.BookStoreAction" method="addToBookStore">
+			
+		</action>
+		<action name="getBookShelf" class="com.nku403.action.BookStoreAction" method="getBookShelf">
 			
 		</action>
 		

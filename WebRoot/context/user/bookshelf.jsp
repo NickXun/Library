@@ -103,7 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<a href="${pageContext.request.contextPath}/context/user/userhome.jsp" class="list-group-item"> <span class="glyphicon glyphicon-home"></span> &nbsp;个人信息 </a>
 						<a href="${pageContext.request.contextPath}/context/user/currentbor.jsp" class="list-group-item"> <span class="glyphicon glyphicon-paperclip"></span> &nbsp;当前借阅 </a>
 						<a href="${pageContext.request.contextPath}/context/user/historybor.jsp" class="list-group-item"> <span class="glyphicon glyphicon-cloud"></span> &nbsp;历史借阅 </a>
-						<a href="${pageContext.request.contextPath}/context/user/moneypage.jsp" class="list-group-item"> 账目清单 </a>
+						<a href="${pageContext.request.contextPath}/context/user/moneypage.jsp" class="list-group-item"> <span class="glyphicon glyphicon-usd"></span> 账目清单 </a>
 						<a href="${pageContext.request.contextPath}/context/user/bookshelf.jsp" class="list-group-item active"> <span class="glyphicon glyphicon-book"></span> &nbsp;书架 </a>
 					</div>
 				</div>
@@ -116,9 +116,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</h3>
 						</div>
 						<div class="panel-body">
+							<s:action name="getBookShelf"></s:action>
 							<p></p>
 							<p></p>
-							<table class="table">
+							<table class="table table-hover">
 								<thead>
 									<tr>
 									<th>编号</th>
@@ -128,9 +129,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</tr>
 								</thead>
 								<tbody>
+										<%int i = 1; %>
+										<s:iterator id="storelist" value="#request.bookstorelist">
 									<tr>
-										<td>1</td><td><img src="${pageContext.request.contextPath}/context/img/book/3.jpg" width="40px" height="60px"/></td><td><a href="#">一哥是我儿</a></td><td>曹逊</td>
+										
+										<td><%out.print(i++); %></td><td><img src="<s:property value="#storelist.getId().getBook().getBookPicture()" />" width="40px" height="60px"/></td><td><a href="findSingleBook?bookId=<s:property value="#storelist.getId().getBook().getBookId()" />"><s:property value="#storelist.getId().getBook().getBookName()" /></a></td><td><s:property value="#storelist.getId().getBook().getBookAuthor()" /></td>
+										
 									</tr>
+										</s:iterator>
 									
 								</tbody>
 							</table>

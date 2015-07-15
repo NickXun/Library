@@ -102,7 +102,7 @@ public class ReturingAction extends ActionSupport {
 		
 	}
 
-	public void findHistory(){
+	public void findHistory() throws ParseException{
 		ServletContext sc = ServletActionContext.getRequest().getSession()
 		.getServletContext();
 
@@ -115,9 +115,19 @@ public class ReturingAction extends ActionSupport {
 		
 		List temp = retservice.FindHistory(user);
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		for(int i = 0;i < temp.size();i++){
+			Returning ret = (Returning) temp.get(i);
+			ret.setBorrowDate(sdf.parse(sdf.format(ret.getBorrowDate())));
+			ret.setReturnDate(sdf.parse(sdf.format(ret.getReturnDate())));
+		}
+		
+		
 		ServletActionContext.getRequest().setAttribute("hisList", temp);
 		
 	}
+	
 	
 	public void setUserId(int userId) {
 		this.userId = userId;

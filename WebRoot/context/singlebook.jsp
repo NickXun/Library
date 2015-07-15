@@ -283,6 +283,8 @@ header{
 						alert("借阅成功");
 					}else if(data.borinfo == "less"){
 						alert("已经没有书可以借了 请尝试预约");
+					}else if(data.borinfo == "more"){
+						alert("您已经借了超过10本书了");
 					}
 				},
 				"json"
