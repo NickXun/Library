@@ -167,7 +167,7 @@ header {
 								</div>
 							</div>
 						</div>
-						<div class="panel panel-default">
+						<!--<div class="panel panel-default">
 							<div class="panel-heading" role="tab" id="headingThree">
 								<h4 class="panel-title">
 									<a class="collapsed" role="button" data-toggle="collapse"
@@ -192,7 +192,7 @@ header {
 								</div>
 							</div>
 						</div>
-					</div>
+					--></div>
 				</div>
 				</div>
 			</div>
